@@ -1,0 +1,135 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding-top: 70px; /* Miejsce na fixed header, dostosuj do wysokości nagłówka */
+    display: flex;       /* Użyjemy flex na body, by stopka była na dole */
+    flex-direction: column;
+    min-height: 100vh;   /* Minimalna wysokość równa wysokości okna */
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+header {
+    
+    height: 50px; /* Przykładowa stała wysokość nagłówka */
+}
+
+header h1 { margin: 0; font-size: 1.5em; }
+nav { background-color: #555; padding: 5px 20px; font-size: 0.9em;}
+
+/* Flex dla body, aby główna część rosła, a stopka była na dole */
+.main-container {
+    flex-grow: 1; /* Pozwala tej części zająć dostępną przestrzeń */
+    
+}
+
+main {
+    background-color: #f4f4f4;
+    padding: 20px;
+    
+}
+
+aside {
+    background-color: #e2e2e2;
+    padding: 20px;
+    position:sticky;
+    
+    /* flex-basis */
+}
+
+section.articles {
+    border: 1px dashed blue; /* Pomocnicza ramka */
+    padding: 10px;
+    
+    min-height: 400px; /* WAŻNE DLA ALIGN-CONTENT: Dajmy sekcji minimalną wysokość */
+}
+
+article {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-sizing: border-box; /* Padding wliczony w rozmiar */
+     
+}
+
+footer {
+    text-align: center;
+    margin-top: auto; /* Wypycha stopkę na dół w kontenerze flex (body) */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge {
+    background-color: tomato;
+    color: white;
+    padding: 3px 8px;
+    font-size: 0.75em;
+    border-radius: 4px;
+    font-weight: bold;
+
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Upewnij się, że jest na wierzchu */
+    /* ... reszta stylów nagłówka ... */
+  }
+  section.articles article {
+    position: relative; /* Kontekst dla absolutnej odznaki */
+     /* ... reszta stylów artykułu ... */
+}
+.badge {
+    position: absolute;
+    top: -8px;  /* Lekko wysunięty ponad krawędź */
+    right: -8px; /* Lekko wysunięty ponad krawędź */
+    /* ... reszta stylów odznaki ... */
+  }
+  .main-container {
+    display: flex;
+    flex-grow: 1; /* Już dodane - zajmuje przestrzeń w body */
+    /* flex-direction: row; jest domyślne */
+  }
+  main {
+    flex-grow: 3; /* Główna treść zajmie 3 części dostępnej szerokości */
+    /* ... reszta stylów main ... */
+  }
+  aside {
+    flex-grow: 1; /* Pasek boczny zajmie 1 część */
+    /* Można też użyć stałej szerokości: */
+    /* flex-basis: 250px; */
+    /* flex-grow: 0; */ /* Nie rośnie */
+    /* flex-shrink: 0; */ /* Nie kurczy się */
+    /* ... reszta stylów aside ... */
+  }
+  section.articles {
+    display: flex;
+    flex-wrap: wrap; /* Pozwól artykułom przechodzić do nowej linii */
+    gap: 15px; /* Odstępy między artykułami (poziome i pionowe) */
+  
+    /* --- TU ĆWICZYMY ALIGN-CONTENT --- */
+    /* Wypróbuj różne wartości, obserwując efekt, gdy artykuły się zawijają */
+    /* align-content: flex-start; /* Linie na górze (domyślnie stretch) */
+    /* align-content: center; /* Linie wyśrodkowane w pionie */
+    /* align-content: space-between; /* Linie rozłożone równomiernie, skrajne przy krawędziach */
+    align-content: space-around; /* Linie rozłożone z równą przestrzenią wokół nich */
+    /* align-content: flex-end; /* Linie na dole */
+  
+    /* ... reszta stylów section.articles (ramka, padding, min-height) ... */
+  }
+  section.articles article {
+   
+    flex-grow: 1; 
+    flex-basis: 250px; 
+  
+    position: relative; /* Już dodane dla odznaki */
+     /* ... reszta stylów artykułu (tło, ramka, padding) ... */
+     /* Usuń ewentualny margin-bottom, jeśli używasz 'gap' w kontenerze */
+  }
